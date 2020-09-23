@@ -191,11 +191,11 @@ ioctl(int fd, request_t request, ...)
 		// handle upper/lower sidebands?
                 if (!strncmp(p_wrq->ifr_ifrn.ifrn_name, ifname, strlen(ifname))) {
 		    char charbuf[13] = "chanspec";
-		    uint32_t *chanspec = (uint32_t*) &charbuf[9];
-		    uint32_t channel;
-		    uint32_t band;
-		    uint32_t bw;
-		    uint32_t ctl_sb;
+		    uint32 *chanspec = (uint32*) &charbuf[9];
+		    uint32 channel;
+		    uint32 band;
+		    uint32 bw;
+		    uint32 ctl_sb;
 
 		    // fprintf(stderr, "SIWFREQ: chan/freq: m=%d e=%d\n", p_wrq->u.freq.m, p_wrq->u.freq.e);
 		    channel = p_wrq->u.freq.m;
@@ -219,11 +219,11 @@ ioctl(int fd, request_t request, ...)
 
 		if (!strncmp(p_wrq->ifr_ifrn.ifrn_name, ifname, strlen(ifname))) {
 		    char charbuf[9] = "chanspec";
-		    uint16_t chanspec;
-		    int32_t channel;
+		    uint16 chanspec;
+		    int32 channel;
 		    ret = nex_ioctl(nexio, WLC_GET_VAR, charbuf, 9, false);
 		    if(ret >= 0) {
-			chanspec = *(uint16_t *) charbuf;
+			chanspec = *(uint16 *) charbuf;
 			channel = chanspec & 0xFF;
 			p_wrq->u.freq.e = 0;
 			p_wrq->u.freq.m = channel;
